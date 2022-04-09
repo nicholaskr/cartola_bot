@@ -1,4 +1,4 @@
-const { Client, LegacySessionAuth } = require('whatsapp-web.js');
+const { Client, LocalAuth } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const fs = require('fs');
 const axios = require('axios').default;
@@ -14,9 +14,7 @@ if(fs.existsSync(SESSION_FILE_PATH)) {
 }
 
 const client = new Client({
-    authStrategy: new LegacySessionAuth({
-        session: sessionData
-    })
+    authStrategy: new LocalAuth({ clientId: "cartola" })
 });
 
 client.on('qr', (qr) => {
